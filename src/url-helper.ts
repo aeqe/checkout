@@ -17,7 +17,7 @@ export function getFetchUrl(settings: IGitSourceSettings): string {
   }
 
   // "origin" is SCHEME://HOSTNAME[:PORT]
-  return `${serviceUrl.origin}/${encodedOwner}/${encodedName}`
+  return `${serviceUrl.toString()}/${encodedOwner}/${encodedName}`
 }
 
 export function getServerUrl(url?: string): URL {
@@ -33,7 +33,7 @@ export function getServerApiUrl(url?: string): string {
   if (hasContent(url, WhitespaceMode.Trim)) {
     let serverUrl = getServerUrl(url)
     if (isGhes(url)) {
-      serverUrl.pathname = 'api/v3'
+      serverUrl.pathname += 'api/v3'
     } else {
       serverUrl.hostname = 'api.' + serverUrl.hostname
     }
